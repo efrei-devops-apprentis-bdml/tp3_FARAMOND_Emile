@@ -1,16 +1,21 @@
-name: GitAction - Azure CI
+name: Publish Docker image
 
-on:
-  push:
-    branches: [ main ]
+on: push
 
 jobs:
-  push_to_registry:
+
+  push_to_registry-linux:
+    name: Push Docker image to Azure Container Registry
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
-          
+        
+      -
+        uses: hadolint/hadolint-action@v2.0.0
+        with:
+          dockerfile: Dockerfile
+        
       - name: 'Login via Azure CLI'
         uses: azure/login@v1
         with:
@@ -23,18 +28,18 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - run: |
-          docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/20210245:latest
-          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/20210245:latest
-      
+          docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/20210245:v1
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/20210245:v1
+    
       - name: 'Deploy to Azure Container Instances'
         uses: 'azure/aci-deploy@v1'
         with:
           resource-group: ${{ secrets.RESOURCE_GROUP }}
           dns-name-label: devops-20210245
-          image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/20210245:latest
+          image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/20210245:v1
           registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
           registry-username: ${{ secrets.REGISTRY_USERNAME }}
           registry-password: ${{ secrets.REGISTRY_PASSWORD }}
           environment-variables: API_KEY=${{ secrets.API_KEY }}
-          name: '20210245'
+          name: 20210245
           location: 'france central'
