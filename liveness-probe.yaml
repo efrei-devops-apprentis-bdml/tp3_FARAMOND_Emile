@@ -1,0 +1,26 @@
+apiVersion: 2019-12-01
+location: eastus
+name: livenesstest
+properties:
+  containers:
+  - name: mycontainer
+    properties:
+      image: 
+      ports: []
+      resources:
+        requests:
+          cpu: 1.0
+          memoryInGB: 1.5
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 80
+          httpHeaders:
+          - name: Custom-Header
+            value: Awesome
+        initialDelaySeconds: 3
+        periodSeconds: 3
+  osType: Linux
+  restartPolicy: Always
+tags: null
+type: Microsoft.ContainerInstance/containerGroups
