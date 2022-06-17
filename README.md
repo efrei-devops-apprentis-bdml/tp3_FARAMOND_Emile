@@ -28,11 +28,20 @@
 
 On spécifie  :
 
-> la localisation : location: 'france central'
+> la localisation : 
+```bash 
+location: 'france central'
+```
 
-> le dns : dns-name-label: devops-20210245 (avec notre numero etudiant efrei)
+> le dns : dns-name-label:
+```bash
+devops-20210245 (avec notre numero etudiant efrei)
+```
 
-> l’Azure Container Registry : efreidevops.azurecr.io
+> l’Azure Container Registry : 
+```bash
+efreidevops.azurecr.io
+```
 
 > l'ACI name : id efrei
 
