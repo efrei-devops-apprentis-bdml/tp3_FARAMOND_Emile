@@ -23,7 +23,8 @@
 2.  Se connecter au groupe de ressources devops-tp3 (sur Azure)
     
 3.  Créer une github action (Actions> New WorkFlow > main.yml  :
-    ![alt text](screenshots/1.png)<space><space>
+\
+    ![alt text](screenshots/1.png)
 
 On spécifie  :
 
@@ -59,17 +60,21 @@ EXPOSE 80
 ```
   
 6) On verifie que le job soit bien crée :
- ![alt text](screenshots/2.png)<space><space>
+\
+ ![alt text](screenshots/2.png)
 
 7) Sur azure, modifier “Default subscription filter” pour accepter “EFREI Apprentis-BDML”. Ensuite vérifier que le container ait bien était crée :
- ![alt text](screenshots/3.png)<space><space>
+\
+ ![alt text](screenshots/3.png)
 
 puis qu’il expose sur le port 80  (dans les propriétés du conteneur) :
- ![alt text](screenshots/4.png)<space><space>
+\
+ ![alt text](screenshots/4.png)
 
 8) Enfin, tester le curl avec la ligne de commande :
 ```bash
 curl "http://devops-20210245.francecentral.azurecontainer.io/?lat=5.902785&lon=102.754175"
 ```
 On obtient le resultat : 
- ![alt text](screenshots/5.png)<space><space>
+\
+ ![alt text](screenshots/5.png)
