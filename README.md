@@ -91,15 +91,40 @@ On obtient le resultat :
  ## Partie BONUS :
  
  Dans ce tp j'ai egalement réalisé la partie BONUS.
+ Remarque: La partie sur liveness prob n'a pas fonctionée avec Azure.
  
+ > Add hadolint au workflow
+C'est la verification des "bonnes pratiques" sur docker.
+
+Dans le fichier yaml on rajoute : 
+```bash
+uses: hadolint/hadolint-action@v2.0.0
+with:
+  dockerfile: Dockerfile
+```
+
+
+> Configuration d'une probe liveness HTTP
+
+Il faut faire 2 choses : (i) ajouter un fichier yaml à la racine du projet, (ii) modifier le github action pour exécuter la modification (i).
+
+(i) --> c'est le fichier liveness.yaml à la racine
+(ii) --> on ajoute les lignes de congiguration suivante dans la github action : 
+```bash
+azcliversion: 2.30.0
+inlineScript: |
+  az container create --resource-group ${{ secrets.RESOURCE_GROUP }} --image ${{ secrets.REGISTRY_LOGIN_SERVER }}/20210245:v1 --dns-name-label devops-20210245 --registry-login-server ${{ secrets.REGISTRY_LOGIN_SERVER }} --registry-username ${{ secrets.REGISTRY_USERNAME }} --registry-password ${{ secrets.REGISTRY_PASSWORD }} --secure-environment-variables API_KEY=${{ secrets.API_KEY }} --location 'france central' --ports 80 -f liveness-probe.yaml
+```
+
+>> Remarque : Azure CI ne permet pas de passer des secrets tokens dans le repo github...
+
  
- 
- ## Remarques sur le travail : 
+ ## Remarques sur le travail / Interets du tp: 
  
  Ce tp met en evidence différent point de github :
  
-> i) La puissance de github 
+> La puissance de Github est mise en avant et son coté pratique pour le travail collaboratif grace au principe de versioning et branches.
 
-> ii) L'intérêt
+> Le workflow peut facilement etre automatiser  grace auw Github Actions. La création, le test et le deploiement du code sont alors des étapes qui peuvent etre directement depuis github.
 
-> iii) La collaboration
+> Autre avantage : Github permet aux equipes de travailler en collabarotion (revues de code, gestion des branches et tri de problemes).
