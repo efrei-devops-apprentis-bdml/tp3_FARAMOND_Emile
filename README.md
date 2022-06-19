@@ -87,3 +87,19 @@ curl "http://devops-20210245.francecentral.azurecontainer.io/?lat=5.902785&lon=1
 On obtient le resultat : 
 \
  ![alt text](screenshots/5.png)
+ 
+ ## Partie BONUS :
+ 
+ Dans ce tp j'ai egalement réalisé la partie BONUS.
+ 
+ 
+ 
+ ## Remarques sur le travail : 
+ 
+ Ce tp met en evidence différent point de github :
+ 
+> i) La puissance de github 
+
+> ii) L'intérêt
+
+> iii) La collaboration
