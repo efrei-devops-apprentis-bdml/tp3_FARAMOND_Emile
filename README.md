@@ -91,6 +91,7 @@ On obtient le resultat :
  ## Partie BONUS :
  
  Dans ce tp j'ai egalement réalisé la partie BONUS.
+ 
  Remarque: La partie sur liveness prob n'a pas fonctionée avec Azure.
  
  > Add hadolint au workflow
@@ -108,8 +109,8 @@ with:
 
 Il faut faire 2 choses : (i) ajouter un fichier yaml à la racine du projet, (ii) modifier le github action pour exécuter la modification (i).
 
-(i) --> c'est le fichier liveness.yaml à la racine
-(ii) --> on ajoute les lignes de congiguration suivante dans la github action : 
+##### (i) --> c'est le fichier liveness.yaml à la racine
+##### (ii) --> on ajoute les lignes de congiguration suivante dans la github action : 
 ```bash
 azcliversion: 2.30.0
 inlineScript: |
